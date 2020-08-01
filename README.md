@@ -13,16 +13,12 @@ npm install --save hooks-form-validation
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React, {useState } from 'react'
 
-import MyComponent from 'hooks-form-validation'
+import {} from 'hooks-form-validation'
 import 'hooks-form-validation/dist/index.css'
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
-}
+
 ```
 
 ## License
