@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 import {
   validateName,
   validateEmail,
-  validatePassword
+  validatePassword,
+  validateConfirmPassword
 } from 'hooks-form-validation'
 import 'hooks-form-validation/dist/index.css'
 
@@ -22,10 +23,14 @@ const App = () => {
 
   const submit = (e) => {
     e.preventDefault()
-    // validateName(name, 'Name', nameError, 3, 10)
+
+    validateName(Name, 'Name', setNameError, 3, 10)
+    validatePassword(password, setPasswordError)
+    validateEmail(email, setEmailError)
+    validateConfirmPassword(password, confirmPassword, setConfirmpasswordError)
   }
   return (
-    <form method='POST' onSubmit={submit}>
+    <form method='POST' onSubmit={submit} noValidate>
       <div>
         <label htmlFor='name'>Name</label>
         <input
@@ -52,6 +57,21 @@ const App = () => {
           <span className='errorMessage'>{passwordError}</span>
         ) : null}
       </div>
+      <div>
+        <label htmlFor='password'> Confirm password</label>
+        <input
+          type='password'
+          name='password'
+          id=''
+          value={confirmPassword}
+          onChange={(e) => {
+            setConfirmPassword(e.target.value)
+          }}
+        />
+        {confirmpasswordError ? (
+          <span className='errorMessage'>{confirmpasswordError}</span>
+        ) : null}
+      </div>
 
       <div>
         <label htmlFor='email'>Email</label>
@@ -60,9 +80,7 @@ const App = () => {
           name='email'
           id=''
           value={email}
-          onChange={(e) => {
-            setPassword(e.target.value)
-          }}
+          onChange={(e) => setName(setEmail(e.target.value))}
         />
         {emailError ? <span className='errorMessage'>{emailError}</span> : null}
       </div>
