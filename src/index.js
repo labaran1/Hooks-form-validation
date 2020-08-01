@@ -99,10 +99,8 @@ export function validateConfirmPassword(
       setConfirmPasswordError()
     }, 5000)
   } else if (
-    password1 == null ||
-    undefined ||
-    ('' && password2 != null) ||
-    undefined
+    (password1 == null || undefined || '') &&
+    (password2 != null || undefined)
   ) {
     setConfirmPasswordError('Please enter password and confirm it ')
     setTimeout(() => {
