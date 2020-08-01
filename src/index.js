@@ -6,7 +6,7 @@ export const ExampleComponent = ({ text }) => {
 }
 
 
-export const validateName(nameState, fieldName, setNameError, min, max)=> {
+export const validateName= (nameState, fieldName='Name', setNameError, min, max)=> {
   if (nameState == null || undefined || "") {
     NameError(`${fieldName} is required`);
     setTimeout(() => {
@@ -48,3 +48,44 @@ export const validateEmail(emailState, setEmailError)=> {
 
 }
 
+export const validatePassword=(passwordState, setPasswordError,min=8, max=32)=>{
+  if (passwordState == null || undefined || "") {
+    setPasswordError("Password is required");
+    setTimeout(() => {
+      setPasswordError();
+    }, 5000);
+  } else if (passwordState.length < min) {
+    setPasswordError(`Password must be at least ${min} characters`);
+    setTimeout(() => {
+      setPasswordError();
+    }, 5000);
+  } else if (passwordState.length > max) {
+    setPasswordError(`Password must be less than ${max} characters`);
+  }else if(!/[A-Z]/.test(passwordState)) {
+    setPasswordError('Password must contain an Upper case letter')
+    setTimeout(() => {
+      setPasswordError();
+    }, 5000);
+  }
+  
+  
+  else {
+    return true;
+  }
+}
+
+// export function validateConfirmPassword(password1, password2, passwordError) {
+//   if (password2 == null || undefined || "") {
+//     passwordError("Please Confirm Password");
+//     setTimeout(() => {
+//       passwordError();
+//     }, 5000);
+//   } else if (password2 !== password1) {
+//     passwordError("Password doesn't  match");
+//     setTimeout(() => {
+//       passwordError();
+//     }, 5000);
+//   } else {
+//     return true;
+//   }
+// }
